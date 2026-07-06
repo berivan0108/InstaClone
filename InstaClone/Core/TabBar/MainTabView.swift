@@ -1,21 +1,27 @@
-//
-//  MainTabView.swift
-//  InstaClone
-//
-//  Created by beri on 6.07.2026.
-//
-
 import SwiftUI
 
 struct MainTabView: View {
     var body: some View {
-        TabView{
-            Text("AAAA")
-            Text("AAAA")
-            Text("AAAA")
-            Text("AAAA")
-            Text("AAAA")
+        TabView {
+            Text("Feed")
+                .tabItem { Image(systemName: "house") }
+            
+            Text("Search")
+                .tabItem { Image(systemName: "magnifyingglass") }
+            
+            Text("Upload Post")
+                .tabItem { Image(systemName: "plus.square") }
+            
+            Text("Notifications")
+                .tabItem { Image(systemName: "heart") }
+            
+            // DÜZELTME BURADA:
+            ProfileView()
+                .tabItem {
+                    Image(systemName: "person")
+                }
         }
+        .tint(Color.primary)
     }
 }
 
