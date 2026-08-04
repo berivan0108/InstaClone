@@ -16,7 +16,7 @@ struct MainTabView: View {
                 .tabItem { Image(systemName: "heart") }
             
             // DÜZELTME BURADA:
-            ProfileView()
+            CurrentUserProfileView(user: User.MOCK_USER[0])
                 .tabItem {
                     Image(systemName: "person")
                 }

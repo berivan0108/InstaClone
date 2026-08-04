@@ -20,10 +20,10 @@ struct LoginView: View {
                     TextField("Enter your email", text: $email)
                         .autocapitalization(.none)
                         .modifier(IGTextFieldViewModifier())
-                    
-                    SecureField("Enter your password", text: $password)
-                        .modifier(IGTextFieldViewModifier())
+                    SecureFieldWithButton("Enter your password",
+                                          text: $password)
 
+                  
                 }
                 
                 // Login Butonu
