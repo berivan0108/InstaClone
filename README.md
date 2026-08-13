@@ -24,4 +24,4 @@ SwiftUI ve MVVM mimarisi kullanılarak geliştirilmiş, Instagram benzeri bir so
 ---
 
 ## 📱 Ekran Görüntüleri
-*(İlerleyen derslerde uygulamanın ekran görüntülerini buraya ekleyebilirsin)*
+*(İlerleyen derslerde uygulamanın ekran görüntülerini buraya eklenecek)*
