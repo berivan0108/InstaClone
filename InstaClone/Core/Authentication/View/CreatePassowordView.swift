@@ -1,5 +1,5 @@
 //
-//  CreateUserNameView.swift
+//  CreatePassowordView.swift
 //  InstaClone
 //
 //  Created by beri on 8.07.2026.
@@ -7,45 +7,45 @@
 
 import SwiftUI
 
-struct CreateUserNameView: View {
-    @State private var username = ""
+struct CreatePassowordView: View {
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var viewModel : RegisterViewModel
 
     var body: some View {
         NavigationStack {
             VStack(spacing: 12) {
                 Spacer()
-                Text("Add your username")
+                Text("Add your password")
                     .font(.title2)
                     .fontWeight(.bold)
                     .padding(.top)
-                
-                Text("You will use this email to sign in to your account")
+                 
+                Text("You will use this password to sign in to your account")
                     .font(.footnote)
                     .foregroundStyle(.gray)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 24)
-                
-                TextField("Username", text: $username)
+                 
+                SecureField("Password", text: $viewModel.password)
                     .autocapitalization(.none)
                     .modifier(IGTextFieldViewModifier())
-                
-               NavigationLink {
-                  CreatePassowordView()
+                 
+                NavigationLink {
+                    CompleteSignUpView()
                         .navigationBarBackButtonHidden(true)
                 } label: {
-                    Text("Next") // Kayıt ekranında "Next" daha mantıklı
+                    Text("Next")
                         .font(.subheadline)
                         .fontWeight(.semibold)
-                        .foregroundStyle(.white) // Beyaz yazı
+                        .foregroundStyle(.white)
                         .frame(maxWidth: .infinity)
                         .frame(height: 44)
-                        .background(Color(.systemBlue)) // Mavi arka plan
+                        .background(Color(.systemBlue))
                         .cornerRadius(10)
                         .padding(.horizontal, 24)
                         .padding(.top, 12)
                 }
-                
+                 
                 Spacer()
             }
             .toolbar{
@@ -61,5 +61,6 @@ struct CreateUserNameView: View {
 }
 
 #Preview {
-    CreateUserNameView()
+    CreatePassowordView()
+        .environmentObject(RegisterViewModel())
 }

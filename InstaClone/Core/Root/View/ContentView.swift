@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var viewModel = ContentViewModel()
+    @StateObject var registerViewModel = RegisterViewModel() // @State yerine @StateObject olması daha doğrudur
+    
     var body: some View {
         Group {
             if viewModel.userSession == nil {
@@ -17,6 +19,7 @@ struct ContentView: View {
                 MainTabView()
             }
         }
+        .environmentObject(registerViewModel) // İşte buraya ekliyoruz!
     }
 }
 

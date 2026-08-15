@@ -2,12 +2,13 @@ import SwiftUI
 
 struct CompleteSignUpView: View {
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var viewModel: RegisterViewModel
 
     var body: some View {
         VStack(spacing: 12) {
             Spacer()
             
-            Text("Welcome to Insta, berivandagci")
+            Text("Welcome to Insta, \(viewModel.username)")
                 .font(.title2)
                 .fontWeight(.bold)
                 .padding(.top)
@@ -20,8 +21,7 @@ struct CompleteSignUpView: View {
             
             // Burası bir işlem sayfası olduğu için NavigationLink değil Button kullanmalısın
             Button {
-                // Main
-                print("COMPLETE")
+                Task {try await viewModel.createUser()}
             } label: {
                 Text("Complete sign up")
                     .font(.subheadline)
@@ -53,5 +53,7 @@ struct CompleteSignUpView: View {
 #Preview {
     NavigationStack { // Preview'da görebilmek için buraya ekledik
         CompleteSignUpView()
+            .environmentObject(RegisterViewModel())
+
     }
 }

@@ -1,17 +1,21 @@
+//
+//  CreateUserNameView.swift
+//  InstaClone
+//
+//  Created by beri on 8.07.2026.
+//
+
 import SwiftUI
 
-struct AddEmailView: View {
-    @State private var email = ""
+struct CreateUserNameView: View {
     @Environment(\.dismiss) var dismiss
-    
+    @EnvironmentObject var viewModel : RegisterViewModel
+
     var body: some View {
-        // NavigationStack en dışta olmalı.
-        // Eğer bu sayfa başka bir NavigationStack'ten çağrılıyorsa buradaki NavigationStack'i silebilirsin.
         NavigationStack {
             VStack(spacing: 12) {
                 Spacer()
-                
-                Text("Add your email")
+                Text("Add your username")
                     .font(.title2)
                     .fontWeight(.bold)
                     .padding(.top)
@@ -22,23 +26,21 @@ struct AddEmailView: View {
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 24)
                 
-                TextField("Email", text: $email)
+                TextField("Username", text: $viewModel.username)
                     .autocapitalization(.none)
                     .modifier(IGTextFieldViewModifier())
                 
-                // NavigationLink düzeltildi
-                NavigationLink {
-                    CreateUserNameView()
-                    
+               NavigationLink {
+                  CreatePassowordView()
                         .navigationBarBackButtonHidden(true)
                 } label: {
-                    Text("Next")
+                    Text("Next") // Kayıt ekranında "Next" daha mantıklı
                         .font(.subheadline)
                         .fontWeight(.semibold)
-                        .foregroundStyle(.white)
+                        .foregroundStyle(.white) // Beyaz yazı
                         .frame(maxWidth: .infinity)
                         .frame(height: 44)
-                        .background(Color(.systemBlue))
+                        .background(Color(.systemBlue)) // Mavi arka plan
                         .cornerRadius(10)
                         .padding(.horizontal, 24)
                         .padding(.top, 12)
@@ -46,19 +48,18 @@ struct AddEmailView: View {
                 
                 Spacer()
             }
-            .toolbar {
+            .toolbar{
                 ToolbarItem(placement: .topBarLeading) {
                     Image(systemName: "chevron.left")
                         .imageScale(.large)
                         .onTapGesture {
                             dismiss()
-                        }
-                }
+                        }                }
             }
         }
     }
 }
 
 #Preview {
-    AddEmailView()
+    CreateUserNameView()
 }
