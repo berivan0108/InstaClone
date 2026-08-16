@@ -41,13 +41,17 @@ struct ProfileHeaderView: View {
                     Text(bio)
                         .font(.footnote)
                 }
+                
+                Text(user.username)
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal)
             
             // 3. Buton
             Button {} label: {
-                Text("Edit Profil")
+                Text("Edit Profile")
                     .font(.subheadline)
                     .fontWeight(.semibold)
                     .frame(width: 360, height: 32)
@@ -59,7 +63,7 @@ struct ProfileHeaderView: View {
             }
             
             Divider()
-        } // <-- VStack'in kapanış parantezi buraya eklendi
+        }
     }
 }
 

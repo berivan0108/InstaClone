@@ -4,23 +4,30 @@
 //
 //  Created by beri on 14.08.2026.
 //
-
 import Foundation
 import FirebaseAuth
 import Combine
 
 class ContentViewModel: ObservableObject {
     private let service = AuthService.shared
-    private var cancelleables = Set<AnyCancellable>()
+    private var cancellables = Set<AnyCancellable>() // Değişken adındaki harf hatası düzeltildi
     
+    @Published var currentUser: User?
     @Published var userSession: FirebaseAuth.User?
-    init(){
-        setupSubcibers()
+    
+    init() {
+        setupSubscribers() // Fonksiyon adındaki harf hatası (subcibers -> subscribers) düzeltildi
     }
-    func setupSubcibers() {
-        service.$userSession.sink(receiveValue: { [weak self] userSession in
-            self?.userSession = userSession
-        })
-        .store(in: &cancelleables)
+    
+    func setupSubscribers() {
+        service.$userSession.sink { [weak self] session in
+            self?.userSession = session
+        }
+        .store(in: &cancellables)
+        
+        service.$currentUser.sink { [weak self] user in
+            self?.currentUser = user
+        }
+        .store(in: &cancellables)
     }
 }

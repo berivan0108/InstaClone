@@ -19,7 +19,10 @@ struct CompleteSignUpView: View {
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 24)
             
-            // Burası bir işlem sayfası olduğu için NavigationLink değil Button kullanmalısın
+            if !viewModel.errorMessage.isEmpty{
+                Text(viewModel.errorMessage)
+                    .foregroundStyle(.red)
+            }
             Button {
                 Task {try await viewModel.createUser()}
             } label: {
