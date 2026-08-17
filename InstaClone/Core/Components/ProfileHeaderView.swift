@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ProfileHeaderView: View {
     let user: User
+    @State private var showEditProfile = false
+    
     var body: some View {
         VStack(spacing: 20) {
             // 1. Üst Kısım
@@ -50,23 +52,31 @@ struct ProfileHeaderView: View {
             .padding(.horizontal)
             
             // 3. Buton
-            Button {} label: {
+            Button {
+                if user.isCurrentUser {
+                    showEditProfile.toggle()
+                } else {
+                    print("Takip edildi.....")
+                }
+            } label: {
                 Text(user.isCurrentUser ? "Edit Profile" : "Follow")
                     .font(.subheadline)
                     .fontWeight(.semibold)
                     .frame(width: 360, height: 32)
                     .background(user.isCurrentUser ? .white : Color(.blue))
                     .foregroundStyle(user.isCurrentUser ? .black : .white)
-                    .foregroundStyle(Color.primary)
                     .cornerRadius(6)
                     .overlay(
                         RoundedRectangle(cornerRadius: 6)
-                            .stroke(user.isCurrentUser ? .gray : .clear , lineWidth: 1)
+                            .stroke(user.isCurrentUser ? .gray : .clear, lineWidth: 1)
                     )
             }
             
             Divider()
         }
+        .fullScreenCover(isPresented: $showEditProfile) {
+            EditProfileView()
+        } // Eksik olan kapanış parantezi eklendi
     }
 }
 

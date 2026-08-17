@@ -60,10 +60,12 @@ class AuthService: ObservableObject {
             return
         }
         let snapshot = try await Firestore.firestore().collection("users").document(currenUid).getDocument()
-        self.currentUser = try! snapshot.data(as: User.self)
+        
+        // try! yerine try? kullanılarak uygulamanın çökmesi engellendi
+        self.currentUser = try? snapshot.data(as: User.self)
     }
     
-    func signOut() { // sigout -> signOut olarak düzeltildi
+    func signOut() {
         try? Auth.auth().signOut()
         self.userSession = nil
         self.currentUser = nil
