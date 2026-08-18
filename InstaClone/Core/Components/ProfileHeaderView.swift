@@ -44,9 +44,7 @@ struct ProfileHeaderView: View {
                         .font(.footnote)
                 }
                 
-                Text(user.username)
-                    .font(.footnote)
-                    .foregroundStyle(.secondary)
+             
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal)
@@ -75,7 +73,7 @@ struct ProfileHeaderView: View {
             Divider()
         }
         .fullScreenCover(isPresented: $showEditProfile) {
-            EditProfileView()
+            EditProfileView(user: user)
         } // Eksik olan kapanış parantezi eklendi
     }
 }

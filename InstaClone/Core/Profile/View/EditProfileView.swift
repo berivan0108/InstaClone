@@ -9,7 +9,14 @@ import SwiftUI
 import PhotosUI
 
 struct EditProfileView: View {
-    @StateObject var viewModel = EditProfileViewModel()
+    @StateObject var viewModel : EditProfileViewModel
+    
+    init(user: User){
+        self._viewModel = StateObject(wrappedValue: EditProfileViewModel(user: user))
+        
+    }
+    
+    
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -29,6 +36,7 @@ struct EditProfileView: View {
                 Spacer()
                 
                 Button("Done") {
+                    Task { try await viewModel.uploadUserData() }
                     // Kaydetme işlemleri buraya gelecek
                 }
                 .font(.subheadline)
@@ -75,5 +83,5 @@ struct EditProfileView: View {
 }
 
 #Preview {
-    EditProfileView()
+    EditProfileView(user: User.MOCK_USER[0])
 }
